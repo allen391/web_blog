@@ -26,6 +26,9 @@ class ThumbUp(models.Model):
     def __unicode__(self):
         return "<user: %s>" %(self.user)
 
+    class Meta:
+        unique_together = ('user', 'article')        
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
