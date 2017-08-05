@@ -18,18 +18,19 @@
 <div class="login">
 	<h2>Acced Form</h2>
 	<div class="login-top">
-		<h1>Queensland University of Technology</h1>
-		<form>
-			<input type="text" value="User Id" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Id';}">
-			<input type="password" value="password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'password';}">
+		<h1>Smart City Community</h1>
+		<form method="post" action="{% url 'login'%}"> {% csrf_token %}
+			<input type="text" value="Username" name="username">
+			<input type="password" value="password" name="password">
+            <div class="forgot">
+                <a href="/blog/register/">Register Account</a>
+                <input type="submit" value="Login" >
+            </div>
 	    </form>
-	    <div class="forgot">
-	    	<a href="#">forgot Password</a>
-	    	<input type="submit" value="Login" >
-	    </div>
+        <p style="color: red">{{ err_msg }}</p>
 	</div>
 	<div class="login-bottom">
-		<h3>A University for the realworld</h3>
+		<h3>Queensland University of Technology</h3>
 	</div>
 </div>	
 
