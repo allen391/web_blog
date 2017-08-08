@@ -10,4 +10,5 @@ urlpatterns = [
     url(r'^index/', views.MainPageView.as_view(), name='index'),
     url(r'^login/$', views.acc_login, name='login'),
     url(r'^register/$', views.acc_registerView.as_view(), name='register')
+    url(r'^article/new/$', views.NewArticleView.as_view(), name='new_article')
 ]

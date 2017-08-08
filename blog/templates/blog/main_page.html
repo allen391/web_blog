@@ -19,7 +19,8 @@
     <!-- Custom styles for this template -->
     <link href="/static/blog/css/navbar-fixed-top.css" rel="stylesheet">
 
-
+    {% block head-js %}
+    {% endblock %}
   </head>
 
   <body waid71fa0d88-5390-4b5b-a2f4-e45fa93d85e2="SA password protect entry checker">
@@ -38,7 +39,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Post</a></li>
+            <li class="active"><a href="{% url 'new_article' %}">Post</a></li>
             <li><a href="#">Search</a></li>
             <li><a href="#">All</a></li>
           </ul>
@@ -49,7 +50,6 @@
                 <li><a href="#">Check post</a></li>
                 <li><a href="#">logout</a></li>
                 <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
               </ul>
             </li>
           </ul>
@@ -73,5 +73,6 @@
     <script src="/static/blog/js/jquery-3.1.0.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="/static/blog/js/bootstrap.min.js"></script>
-
+    {% block bottom-js %}
+    {% endblock %}
   </body></html>

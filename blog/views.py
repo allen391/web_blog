@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
+from . import models
 
 # Create your views here.
 
@@ -27,6 +28,7 @@ def acc_login(request):
             err_msg = 'wrong username or password'
 
     return render(request, 'blog/index.html', {'err_msg': err_msg})
+
 
 class acc_registerView(TemplateView):
     template_name = 'blog/register.html'
@@ -57,3 +59,12 @@ class MainPageView(TemplateView):
     #         return 'blog/mobile/main_page.html'
     #     if self.request.is_pc:
     #         return 'blog/pc/main_page.html'
+
+
+class NewArticleView(TemplateView):
+    template_name = 'blog/new_article.html'
+
+    def new_article(self, request):
+        category_list  = models.Category.objects.all()
+        return render(request, 'blog/new_article.html', {'category_list': category_list})
+

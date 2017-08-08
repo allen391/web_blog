@@ -1,0 +1,27 @@
+{% extends 'blog/main_page.html' %}
+{% block head-js %}
+    <script src="/static/plugins/ckeditor/ckeditor.js"></script>
+{% endblock %}
+{% block page-content %}
+    <div class="new-article">
+        <form enctype="multipart/form-data" method="post", action="{% url 'new_article' %}"> {% csrf_token %}
+            <input name="title" type="text" class="form-control" placeholder="title">
+            {{ category_list }}
+            <select class="form-control" name="category_id">
+                {% for category in category_list %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        <input name="summary" type="text" class="form-control" placeholder="summary">
+        <input type="file" name="head_img"> upload your picture
+        <textarea id="ckeditor" name="content"></textarea>
+        <br>
+        <button type="submit" class="btn btn-success pull-right">Post article</button>
+        </form>
+    </div>
+{% endblock %}
+{% block bottom-js %}
+    <script>
+        CKEDITOR.replace('ckeditor')
+    </script>
+{% endblock %}
