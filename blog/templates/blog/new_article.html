@@ -4,20 +4,24 @@
 {% endblock %}
 {% block page-content %}
     <div class="new-article">
-        <form enctype="multipart/form-data" method="post", action="{% url 'new_article' %}"> {% csrf_token %}
-            <input name="title" type="text" class="form-control" placeholder="title">
-            {{ category_list }}
-            <select class="form-control" name="category_id">
-                {% for category in category_list %}
-                <option value="{{ category.id }}">{{ category.name }}</option>
-                {% endfor %}
-            </select>
-        <input name="summary" type="text" class="form-control" placeholder="summary">
-        <input type="file" name="head_img"> upload your picture
-        <textarea id="ckeditor" name="content"></textarea>
-        <br>
-        <button type="submit" class="btn btn-success pull-right">Post article</button>
-        </form>
+        {% if new_article_obj %}
+            <h3>the article has been created sucessfully, <a href="{% url 'article_detail' new_article_obj.id %}">click for checking it</a></h3>
+        {% else %}
+            <form enctype="multipart/form-data" method="post", action="{% url 'new_article' %}"> {% csrf_token %}
+                <input name="title" type="text" class="form-control" placeholder="title">
+                {{ category_list }}
+                <select class="form-control" name="category_id">
+                    {% for category in category_list %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                    {% endfor %}
+                </select>
+            <input name="summary" type="text" class="form-control" placeholder="summary">
+            <input type="file" name="head_img"> upload your picture
+            <textarea id="ckeditor" name="content"></textarea>
+            <br>
+            <button type="submit" class="btn btn-success pull-right">Post article</button>
+            </form>
+        {% endif %}
     </div>
 {% endblock %}
 {% block bottom-js %}

@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from . import models
-
+from form import ArticleForm
 # Create your views here.
 
 
@@ -65,6 +65,18 @@ class NewArticleView(TemplateView):
     template_name = 'blog/new_article.html'
 
     def new_article(self, request):
-        category_list  = models.Category.objects.all()
+        if request.method == 'POST':
+            print(request.POST)
+            form = ArticleForm(request.POST, request.Files)
+            if form.is_valid():
+                print("--form data", form.cleaned_data)
+                form_data = form.cleaned_data
+                form_data['author_id'] = request.user.userprofile.id
+                new_article_obj = models.Article(**form_data)
+                new_article_obj.save()
+                return render(request, 'blog/new_article.html', {'new_article_obj': new_article_obj})
+            else:
+                print("error", form.errors)
+        category_list = models.Category.objects.all()
         return render(request, 'blog/new_article.html', {'category_list': category_list})
 
