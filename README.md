@@ -1,5 +1,5 @@
 # web_blog
-for sao bi xiaoze
+
 # basic function
 1. article post (for the article title, summuary and contect, it has a validation)
 2. article delete (it has a confirmation)
